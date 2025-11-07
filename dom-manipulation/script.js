@@ -15,33 +15,29 @@ function saveQuotes() {
 
 // Load quotes from localStorage
 function loadQuotes() {
-  const saved = localStorage.getItem(STORAGE_KEY);
-  if (saved) {
-    try {
-      const parsed = JSON.parse(saved);
-      if (Array.isArray(parsed)) quotes = parsed;
-    } catch (e) {
-      console.error("Error loading quotes:", e);
-    }
+  const stored = localStorage.getItem(STORAGE_KEY);
+  if (stored) {
+    quotes = JSON.parse(stored);
   }
 }
 
-// Save last viewed index to sessionStorage
+// Save last viewed quote index to sessionStorage
 function saveLastViewed(index) {
-  sessionStorage.setItem(LAST_VIEWED_KEY, String(index));
+  sessionStorage.setItem(LAST_VIEWED_KEY, index);
 }
 
-// Load last viewed index
+// Load last viewed index from sessionStorage
 function loadLastViewed() {
   const value = sessionStorage.getItem(LAST_VIEWED_KEY);
   return value !== null ? Number(value) : null;
 }
 
-// Display quote by index
+// Display a quote at a given index
 function displayQuoteAtIndex(index) {
   const quoteDisplay = document.getElementById("quoteDisplay");
   const quote = quotes[index];
   if (!quote) return;
+
   quoteDisplay.textContent = `"${quote.text}" — [${quote.category}]`;
   saveLastViewed(index);
 }
@@ -62,85 +58,64 @@ function showLastViewedQuote() {
   if (last !== null && last >= 0 && last < quotes.length) {
     displayQuoteAtIndex(last);
   } else {
-    alert("No last viewed quote found in this session.");
+    alert("No last viewed quote in this session.");
   }
 }
 
-// Add a new quote
+// Add new quote
 function addQuote() {
-  const text = document.getElementById("newQuoteText").value.trim();
-  const category = document.getElementById("newQuoteCategory").value.trim();
+  const textInput = document.getElementById("newQuoteText").value.trim();
+  const categoryInput = document.getElementById("newQuoteCategory").value.trim();
 
-  if (!text || !category) {
+  if (!textInput || !categoryInput) {
     alert("Please enter both a quote and a category.");
     return;
   }
 
-  quotes.push({ text, category });
-  saveQuotes();
-  alert("Quote added successfully!");
+  const newQuote = { text: textInput, category: categoryInput };
+  quotes.push(newQuote);
+
+  saveQuotes(); // **Save to localStorage immediately**
 
   document.getElementById("newQuoteText").value = "";
   document.getElementById("newQuoteCategory").value = "";
 
+  alert("Quote added successfully!");
   displayQuoteAtIndex(quotes.length - 1);
 }
 
-// Export quotes to JSON
+// Export quotes to JSON file
 function exportToJsonFile() {
-  const data = JSON.stringify(quotes, null, 2);
+  const data = JSON.stringify(quotes);
   const blob = new Blob([data], { type: "application/json" });
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url;
-  a.download = "quotes_export.json";
+  a.download = "quotes.json";
   a.click();
   URL.revokeObjectURL(url);
 }
 
-// Import quotes from JSON (grader-required)
+// Import quotes from JSON file
 function importFromJsonFile(event) {
   const file = event.target.files[0];
-  if (!file) {
-    alert("No file selected.");
-    return;
-  }
+  if (!file) return;
 
   const reader = new FileReader();
   reader.onload = function(e) {
-    try {
-      const importedQuotes = JSON.parse(e.target.result);
-      if (!Array.isArray(importedQuotes)) {
-        alert("Invalid JSON format. Must be an array of objects.");
-        return;
-      }
-
-      const valid = importedQuotes.filter(
-        (q) => q && typeof q.text === "string" && typeof q.category === "string"
-      );
-
-      if (valid.length === 0) {
-        alert("No valid quotes found in the imported file.");
-        return;
-      }
-
-      quotes.push(...valid);
-      saveQuotes();
-      alert("Quotes imported successfully!");
-    } catch (err) {
-      console.error("Import error:", err);
-      alert("Failed to import quotes.");
-    }
+    const importedQuotes = JSON.parse(e.target.result);
+    quotes.push(...importedQuotes); // push into array
+    saveQuotes(); // save to localStorage
+    alert("Quotes imported successfully!");
   };
-
   reader.readAsText(file);
 }
 
-// Initialize
+// Initialize app
 function init() {
-  loadQuotes();
+  loadQuotes(); // load from localStorage
 
-  // Display last or random quote
+  // Display last viewed quote if exists
   const lastViewed = loadLastViewed();
   if (lastViewed !== null && lastViewed < quotes.length) {
     displayQuoteAtIndex(lastViewed);
