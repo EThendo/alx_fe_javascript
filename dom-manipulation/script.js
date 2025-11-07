@@ -28,11 +28,9 @@ function addQuote() {
   const newQuote = { text: newQuoteText, category: newQuoteCategory };
   quotes.push(newQuote);
 
-  
   textInput.value = "";
   categoryInput.value = "";
 
-  alert("Quote added successfully!");
   showRandomQuote();
 }
 
