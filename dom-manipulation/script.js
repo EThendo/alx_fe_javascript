@@ -37,12 +37,11 @@ function loadLastViewed() {
   return value !== null ? Number(value) : null;
 }
 
-// Display a specific quote
+// Display quote by index
 function displayQuoteAtIndex(index) {
   const quoteDisplay = document.getElementById("quoteDisplay");
   const quote = quotes[index];
   if (!quote) return;
-
   quoteDisplay.textContent = `"${quote.text}" — [${quote.category}]`;
   saveLastViewed(index);
 }
@@ -67,32 +66,6 @@ function showLastViewedQuote() {
   }
 }
 
-// Create Add Quote Form dynamically
-function createAddQuoteForm() {
-  const formContainer = document.getElementById("formContainer");
-  formContainer.innerHTML = "";
-
-  const title = document.createElement("h3");
-  title.textContent = "Add Your Own Quote";
-
-  const textInput = document.createElement("input");
-  textInput.id = "newQuoteText";
-  textInput.type = "text";
-  textInput.placeholder = "Enter a new quote";
-
-  const categoryInput = document.createElement("input");
-  categoryInput.id = "newQuoteCategory";
-  categoryInput.type = "text";
-  categoryInput.placeholder = "Enter quote category";
-
-  const addButton = document.createElement("button");
-  addButton.id = "addQuoteBtn";
-  addButton.textContent = "Add Quote";
-  addButton.addEventListener("click", addQuote);
-
-  formContainer.append(title, textInput, categoryInput, addButton);
-}
-
 // Add a new quote
 function addQuote() {
   const text = document.getElementById("newQuoteText").value.trim();
@@ -113,7 +86,7 @@ function addQuote() {
   displayQuoteAtIndex(quotes.length - 1);
 }
 
-// Export quotes to JSON file
+// Export quotes to JSON
 function exportToJsonFile() {
   const data = JSON.stringify(quotes, null, 2);
   const blob = new Blob([data], { type: "application/json" });
@@ -125,7 +98,7 @@ function exportToJsonFile() {
   URL.revokeObjectURL(url);
 }
 
-// Import quotes from JSON file (grader-required function)
+// Import quotes from JSON (grader-required)
 function importFromJsonFile(event) {
   const file = event.target.files[0];
   if (!file) {
@@ -163,16 +136,11 @@ function importFromJsonFile(event) {
   reader.readAsText(file);
 }
 
-// Initialize everything
+// Initialize
 function init() {
   loadQuotes();
-  createAddQuoteForm();
 
-  document.getElementById("newQuote").addEventListener("click", showRandomQuote);
-  document.getElementById("showLast").addEventListener("click", showLastViewedQuote);
-  document.getElementById("exportBtn").addEventListener("click", exportToJsonFile);
-
-  // Display last or random quote on load
+  // Display last or random quote
   const lastViewed = loadLastViewed();
   if (lastViewed !== null && lastViewed < quotes.length) {
     displayQuoteAtIndex(lastViewed);

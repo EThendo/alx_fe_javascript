@@ -69,17 +69,22 @@
 
   <!-- Buttons -->
   <div id="controls">
-    <button id="newQuote">Show New Quote</button>
-    <button id="showLast">Show Last Viewed</button>
+    <button id="newQuote" onclick="showRandomQuote()">Show New Quote</button>
+    <button id="showLast" onclick="showLastViewedQuote()">Show Last Viewed</button>
   </div>
 
   <!-- Add New Quote Form -->
-  <div id="formContainer"></div>
+  <div id="formContainer">
+    <h3>Add Your Own Quote</h3>
+    <input id="newQuoteText" type="text" placeholder="Enter a new quote" />
+    <input id="newQuoteCategory" type="text" placeholder="Enter quote category" />
+    <button id="addQuoteBtn" onclick="addQuote()">Add Quote</button>
+  </div>
 
   <!-- Import / Export -->
   <div id="importExport">
     <input type="file" id="importFile" accept=".json" onchange="importFromJsonFile(event)" />
-    <button id="exportBtn">Export JSON</button>
+    <button id="exportBtn" onclick="exportToJsonFile()">Export JSON</button>
   </div>
 
   <script src="script.js"></script>
