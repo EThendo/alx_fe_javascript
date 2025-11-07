@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Dynamic Quote Generator</title>
   <style>
     body {
@@ -17,9 +17,13 @@
       padding: 20px;
       margin: 20px auto;
       border-radius: 10px;
-      max-width: 500px;
-      box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+      max-width: 600px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.2);
       font-size: 1.2rem;
+      min-height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     button {
@@ -30,6 +34,7 @@
       border-radius: 5px;
       cursor: pointer;
       font-size: 1rem;
+      margin: 6px;
     }
 
     button:hover {
@@ -42,19 +47,39 @@
       border: 1px solid #ccc;
       border-radius: 4px;
     }
+
+    #controls {
+      margin-top: 20px;
+    }
+
+    #importExport {
+      margin-top: 18px;
+    }
+
+    h3 { margin-top: 24px; }
   </style>
 </head>
 <body>
   <h1>Dynamic Quote Generator</h1>
 
-  <!-- Quote Display Section -->
+  <!-- Quote Display Area -->
   <div id="quoteDisplay">Click “Show New Quote” to see a quote</div>
 
-  <!-- Button to Show Random Quote -->
-  <button id="newQuote">Show New Quote</button>
+  <!-- Basic controls -->
+  <div id="controls">
+    <button id="newQuote">Show New Quote</button>
+    <button id="showLast">Show Last Viewed</button>
+  </div>
 
-  <!-- Container where the Add Quote Form will be created dynamically -->
+  <!-- Add New Quote form (created dynamically by JS) -->
   <div id="formContainer"></div>
+
+  <!-- Import / Export -->
+  <div id="importExport">
+    <input type="file" id="importFile" accept=".json" />
+    <button id="importBtn">Import JSON</button>
+    <button id="exportBtn">Export JSON</button>
+  </div>
 
   <script src="script.js"></script>
 </body>
