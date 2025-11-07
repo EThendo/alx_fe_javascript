@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dynamic Quote Generator</title>
   <style>
     body {
@@ -53,31 +53,32 @@
     }
 
     #importExport {
-      margin-top: 18px;
+      margin-top: 20px;
     }
 
-    h3 { margin-top: 24px; }
+    h3 {
+      margin-top: 25px;
+    }
   </style>
 </head>
 <body>
   <h1>Dynamic Quote Generator</h1>
 
-  <!-- Quote Display Area -->
+  <!-- Quote Display -->
   <div id="quoteDisplay">Click “Show New Quote” to see a quote</div>
 
-  <!-- Basic controls -->
+  <!-- Buttons -->
   <div id="controls">
     <button id="newQuote">Show New Quote</button>
     <button id="showLast">Show Last Viewed</button>
   </div>
 
-  <!-- Add New Quote form (created dynamically by JS) -->
+  <!-- Add New Quote Form -->
   <div id="formContainer"></div>
 
   <!-- Import / Export -->
   <div id="importExport">
-    <input type="file" id="importFile" accept=".json" />
-    <button id="importBtn">Import JSON</button>
+    <input type="file" id="importFile" accept=".json" onchange="importFromJsonFile(event)" />
     <button id="exportBtn">Export JSON</button>
   </div>
 
