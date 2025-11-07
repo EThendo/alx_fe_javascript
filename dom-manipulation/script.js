@@ -5,7 +5,7 @@ let quotes = [
   { text: "Life is what happens when you're busy making other plans.", category: "Life" }
 ];
 
-// Display random quote
+// Function to show a random quote
 function showRandomQuote() {
   const quoteDisplay = document.getElementById("quoteDisplay");
   const randomIndex = Math.floor(Math.random() * quotes.length);
@@ -13,7 +13,37 @@ function showRandomQuote() {
   quoteDisplay.textContent = `"${quote.text}" — [${quote.category}]`;
 }
 
-// Add new quote dynamically
+// Function to create the Add Quote Form dynamically
+function createAddQuoteForm() {
+  const formContainer = document.getElementById("formContainer");
+
+  // Clear any existing form
+  formContainer.innerHTML = "";
+
+  const title = document.createElement("h3");
+  title.textContent = "Add Your Own Quote";
+
+  const textInput = document.createElement("input");
+  textInput.id = "newQuoteText";
+  textInput.type = "text";
+  textInput.placeholder = "Enter a new quote";
+
+  const categoryInput = document.createElement("input");
+  categoryInput.id = "newQuoteCategory";
+  categoryInput.type = "text";
+  categoryInput.placeholder = "Enter quote category";
+
+  const addButton = document.createElement("button");
+  addButton.textContent = "Add Quote";
+  addButton.addEventListener("click", addQuote);
+
+  formContainer.appendChild(title);
+  formContainer.appendChild(textInput);
+  formContainer.appendChild(categoryInput);
+  formContainer.appendChild(addButton);
+}
+
+// Function to add new quote
 function addQuote() {
   const textInput = document.getElementById("newQuoteText");
   const categoryInput = document.getElementById("newQuoteCategory");
@@ -31,9 +61,12 @@ function addQuote() {
   textInput.value = "";
   categoryInput.value = "";
 
+  alert("Quote added successfully!");
   showRandomQuote();
 }
 
 // Event listeners
 document.getElementById("newQuote").addEventListener("click", showRandomQuote);
-document.getElementById("addQuoteBtn").addEventListener("click", addQuote);
+
+// Create the form dynamically when page loads
+createAddQuoteForm();

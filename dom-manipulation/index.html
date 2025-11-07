@@ -42,30 +42,20 @@
       border: 1px solid #ccc;
       border-radius: 4px;
     }
-
-    h3 {
-      margin-top: 30px;
-    }
   </style>
 </head>
 <body>
   <h1>Dynamic Quote Generator</h1>
 
-  <!-- Quote Display Area -->
+  <!-- Quote Display Section -->
   <div id="quoteDisplay">Click “Show New Quote” to see a quote</div>
 
   <!-- Button to Show Random Quote -->
   <button id="newQuote">Show New Quote</button>
 
-  <!-- Add New Quote Section -->
-  <div>
-    <h3>Add Your Own Quote</h3>
-    <input id="newQuoteText" type="text" placeholder="Enter a new quote">
-    <input id="newQuoteCategory" type="text" placeholder="Enter quote category">
-    <button id="addQuoteBtn">Add Quote</button>
-  </div>
+  <!-- Container where the Add Quote Form will be created dynamically -->
+  <div id="formContainer"></div>
 
-  <!-- Link to JavaScript File -->
   <script src="script.js"></script>
 </body>
 </html>
