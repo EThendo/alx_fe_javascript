@@ -33,7 +33,7 @@
     button:hover {
       background-color: #86851e;
     }
-    input {
+    input, select {
       padding: 8px;
       margin: 5px;
       border: 1px solid #ccc;
@@ -44,12 +44,21 @@
 <body>
   <h1>Dynamic Quote Generator</h1>
 
+  <!-- Category Filter -->
+  <div>
+    <h3>Filter by Category</h3>
+    <select id="categoryFilter" onchange="filterQuotes()">
+      <option value="all">All Categories</option>
+    </select>
+  </div>
+
   <div id="quoteDisplay">Click “Show New Quote” to see a quote</div>
 
   <button id="newQuote">Show New Quote</button>
   <button id="lastViewedBtn">Show Last Viewed</button>
   <button id="exportBtn">Export Quotes</button>
 
+  <!-- Add New Quote Section -->
   <div style="margin-top: 30px;">
     <h3>Add Your Own Quote</h3>
     <input id="newQuoteText" type="text" placeholder="Enter a new quote" />
@@ -57,6 +66,7 @@
     <button id="addQuoteBtn">Add Quote</button>
   </div>
 
+  <!-- JSON Import -->
   <div style="margin-top: 20px;">
     <h3>Import Quotes from JSON</h3>
     <input type="file" id="importFile" accept=".json" />
