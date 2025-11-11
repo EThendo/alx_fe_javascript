@@ -90,3 +90,53 @@ v<!DOCTYPE html>
   <script src="script.js"></script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Dynamic Quote Generator</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width:800px; margin:32px auto; padding:0 16px; }
+    h1 { text-align:center; }
+    #quoteDisplay { border:1px solid #ddd; padding:20px; min-height:80px; margin-bottom:16px; border-radius:8px; background:#fafafa; }
+    .controls { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:16px; }
+    .controls > * { flex: 1 1 auto; }
+    .small { flex: 0 0 auto; }
+    #quotesList { margin-top:16px; display:grid; gap:8px; }
+    .quote-card { border:1px solid #eee; padding:10px; border-radius:6px; background:#fff; display:flex; justify-content:space-between; align-items:center; gap:12px; }
+    .meta { color:#666; font-size:0.9rem; }
+    .form-row { display:flex; gap:8px; margin-top:8px; }
+    input[type="text"]{ padding:8px; border-radius:6px; border:1px solid #ccc; width:100%; }
+    button{ padding:8px 12px; border-radius:6px; border:1px solid #888; background:#f2f2f2; cursor:pointer; }
+    button.primary { background:#1e90ff; color:#fff; border-color:#1e90ff; }
+    .small-btn { padding:6px 8px; font-size:0.9rem; }
+    .actions { display:flex; gap:8px; }
+    #importFile { display:none; }
+    label.file-label{ padding:8px 12px; border-radius:6px; border:1px dashed #aaa; cursor:pointer; display:inline-block; }
+  </style>
+</head>
+<body>
+  <h1>Dynamic Quote Generator</h1>
+
+  <div id="quoteDisplay">Loading...</div>
+
+  <div class="controls">
+    <select id="categoryFilter"></select>
+    <button id="newQuote" class="small-btn">Show New Quote</button>
+    <button id="lastViewed" class="small-btn">Show Last Viewed</button>
+    <div class="actions small">
+      <button id="exportBtn" class="small-btn">Export JSON</button>
+      <label for="importFile" class="file-label">Import JSON</label>
+      <input type="file" id="importFile" accept=".json" />
+    </div>
+  </div>
+
+  <div id="addFormContainer"></div>
+
+  <h3>All Quotes</h3>
+  <div id="quotesList"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
