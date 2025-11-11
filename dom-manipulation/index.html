@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dynamic Quote Generator</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dynamic Quote Generator with Filter</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -20,7 +20,7 @@
       box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
       font-size: 1.2rem;
     }
-    button {
+    button, select {
       background-color: #0d9c2c;
       color: white;
       border: none;
@@ -30,10 +30,10 @@
       font-size: 1rem;
       margin: 5px;
     }
-    button:hover {
+    button:hover, select:hover {
       background-color: #86851e;
     }
-    input, select {
+    input {
       padding: 8px;
       margin: 5px;
       border: 1px solid #ccc;
@@ -45,31 +45,22 @@
   <h1>Dynamic Quote Generator</h1>
 
   <!-- Category Filter -->
-  <div>
-    <h3>Filter by Category</h3>
-    <select id="categoryFilter" onchange="filterQuotes()">
-      <option value="all">All Categories</option>
-    </select>
-  </div>
+  <select id="categoryFilter" onchange="filterQuotes()">
+    <option value="all">All Categories</option>
+  </select>
 
+  <!-- Display Random Quotes -->
   <div id="quoteDisplay">Click “Show New Quote” to see a quote</div>
 
+  <!-- Show Random Quote -->
   <button id="newQuote">Show New Quote</button>
-  <button id="lastViewedBtn">Show Last Viewed</button>
-  <button id="exportBtn">Export Quotes</button>
 
-  <!-- Add New Quote Section -->
+  <!-- Add New Quote -->
   <div style="margin-top: 30px;">
     <h3>Add Your Own Quote</h3>
     <input id="newQuoteText" type="text" placeholder="Enter a new quote" />
     <input id="newQuoteCategory" type="text" placeholder="Enter quote category" />
     <button id="addQuoteBtn">Add Quote</button>
-  </div>
-
-  <!-- JSON Import -->
-  <div style="margin-top: 20px;">
-    <h3>Import Quotes from JSON</h3>
-    <input type="file" id="importFile" accept=".json" />
   </div>
 
   <script src="script.js"></script>
