@@ -1,4 +1,4 @@
-v<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -11,131 +11,56 @@ v<!DOCTYPE html>
       padding: 40px;
       background: #f2f2f2;
     }
-
     #quoteDisplay {
       background: white;
       padding: 20px;
       margin: 20px auto;
       border-radius: 10px;
-      max-width: 600px;
-      box-shadow: 0 0 8px rgba(0,0,0,0.2);
+      max-width: 500px;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
       font-size: 1.2rem;
-      min-height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
-
     button {
-      background-color: #295333;
+      background-color: #0d9c2c;
       color: white;
       border: none;
       padding: 10px 20px;
       border-radius: 5px;
       cursor: pointer;
       font-size: 1rem;
-      margin: 6px;
+      margin: 5px;
     }
-
     button:hover {
       background-color: #86851e;
     }
-
     input {
       padding: 8px;
       margin: 5px;
       border: 1px solid #ccc;
       border-radius: 4px;
     }
-
-    #controls {
-      margin-top: 20px;
-    }
-
-    #importExport {
-      margin-top: 20px;
-    }
-
-    h3 {
-      margin-top: 25px;
-    }
   </style>
 </head>
 <body>
   <h1>Dynamic Quote Generator</h1>
 
-  <!-- Quote Display -->
   <div id="quoteDisplay">Click “Show New Quote” to see a quote</div>
 
-  <!-- Buttons -->
-  <div id="controls">
-    <button id="newQuote" onclick="showRandomQuote()">Show New Quote</button>
-    <button id="showLast" onclick="showLastViewedQuote()">Show Last Viewed</button>
-  </div>
+  <button id="newQuote">Show New Quote</button>
+  <button id="lastViewedBtn">Show Last Viewed</button>
+  <button id="exportBtn">Export Quotes</button>
 
-  <!-- Add New Quote Form -->
-  <div id="formContainer">
+  <div style="margin-top: 30px;">
     <h3>Add Your Own Quote</h3>
     <input id="newQuoteText" type="text" placeholder="Enter a new quote" />
     <input id="newQuoteCategory" type="text" placeholder="Enter quote category" />
-    <button id="addQuoteBtn" onclick="addQuote()">Add Quote</button>
+    <button id="addQuoteBtn">Add Quote</button>
   </div>
 
-  <!-- Import / Export -->
-  <div id="importExport">
-    <input type="file" id="importFile" accept=".json" onchange="importFromJsonFile(event)" />
-    <button id="exportBtn" onclick="exportToJsonFile()">Export JSON</button>
+  <div style="margin-top: 20px;">
+    <h3>Import Quotes from JSON</h3>
+    <input type="file" id="importFile" accept=".json" />
   </div>
-
-  <script src="script.js"></script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Dynamic Quote Generator</title>
-  <style>
-    body { font-family: Arial, sans-serif; max-width:800px; margin:32px auto; padding:0 16px; }
-    h1 { text-align:center; }
-    #quoteDisplay { border:1px solid #ddd; padding:20px; min-height:80px; margin-bottom:16px; border-radius:8px; background:#fafafa; }
-    .controls { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:16px; }
-    .controls > * { flex: 1 1 auto; }
-    .small { flex: 0 0 auto; }
-    #quotesList { margin-top:16px; display:grid; gap:8px; }
-    .quote-card { border:1px solid #eee; padding:10px; border-radius:6px; background:#fff; display:flex; justify-content:space-between; align-items:center; gap:12px; }
-    .meta { color:#666; font-size:0.9rem; }
-    .form-row { display:flex; gap:8px; margin-top:8px; }
-    input[type="text"]{ padding:8px; border-radius:6px; border:1px solid #ccc; width:100%; }
-    button{ padding:8px 12px; border-radius:6px; border:1px solid #888; background:#f2f2f2; cursor:pointer; }
-    button.primary { background:#1e90ff; color:#fff; border-color:#1e90ff; }
-    .small-btn { padding:6px 8px; font-size:0.9rem; }
-    .actions { display:flex; gap:8px; }
-    #importFile { display:none; }
-    label.file-label{ padding:8px 12px; border-radius:6px; border:1px dashed #aaa; cursor:pointer; display:inline-block; }
-  </style>
-</head>
-<body>
-  <h1>Dynamic Quote Generator</h1>
-
-  <div id="quoteDisplay">Loading...</div>
-
-  <div class="controls">
-    <select id="categoryFilter"></select>
-    <button id="newQuote" class="small-btn">Show New Quote</button>
-    <button id="lastViewed" class="small-btn">Show Last Viewed</button>
-    <div class="actions small">
-      <button id="exportBtn" class="small-btn">Export JSON</button>
-      <label for="importFile" class="file-label">Import JSON</label>
-      <input type="file" id="importFile" accept=".json" />
-    </div>
-  </div>
-
-  <div id="addFormContainer"></div>
-
-  <h3>All Quotes</h3>
-  <div id="quotesList"></div>
 
   <script src="script.js"></script>
 </body>
