@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dynamic Quote Generator with Filter</title>
+  <title>Dynamic Quote Generator with Server Sync</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -39,29 +39,42 @@
       border: 1px solid #ccc;
       border-radius: 4px;
     }
+    #notification {
+      margin-top: 20px;
+      padding: 10px;
+      display: none;
+      border-radius: 6px;
+      background: #fff3cd;
+      border: 1px solid #ffeeba;
+      color: #856404;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
   </style>
 </head>
 <body>
-  <h1>Dynamic Quote Generator</h1>
+  <h1>Dynamic Quote Generator (with Server Sync)</h1>
 
   <!-- Category Filter -->
   <select id="categoryFilter" onchange="filterQuotes()">
     <option value="all">All Categories</option>
   </select>
 
-  <!-- Display Random Quotes -->
+  <!-- Display Quotes -->
   <div id="quoteDisplay">Click “Show New Quote” to see a quote</div>
-
-  <!-- Show Random Quote -->
   <button id="newQuote">Show New Quote</button>
 
-  <!-- Add New Quote -->
+  <!-- Add Quote -->
   <div style="margin-top: 30px;">
     <h3>Add Your Own Quote</h3>
     <input id="newQuoteText" type="text" placeholder="Enter a new quote" />
     <input id="newQuoteCategory" type="text" placeholder="Enter quote category" />
     <button id="addQuoteBtn">Add Quote</button>
   </div>
+
+  <!-- Notification area -->
+  <div id="notification"></div>
 
   <script src="script.js"></script>
 </body>
